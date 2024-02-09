@@ -1,0 +1,14 @@
+So basically, what ended up happening was my browser ended up having 
+CORS issues when trying to run the html with the raw image files and fonts.
+I did end up finding a solution, which was converting the images to
+base64. The images pop up just fine but...needless to say it may 
+look messy depending on how the js is viewed.
+
+I'm not sure if this was a thing only my laptop was doing and if 
+the way the example produces the images would work on other computers.
+Regardless I was able to at least find a decent work around...hope 
+you're not mad at me.
+
+Have a great day!
+
+Mint.
