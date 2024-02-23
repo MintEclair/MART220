@@ -4,6 +4,16 @@ var peaY = 250;
 var peaDiameter = 40;
 var pick;
 
+//Santa Claus
+var SantaX = 100
+var SantaY = 200
+var SantaSpeedX, SantaSpeedY
+var SantaWalkCycle = [];
+var i = 0
+var flipX = false;
+var SantaObject; 
+
+
 
 //Evil Fresh Fry 1
 var FF1X = 275
@@ -37,6 +47,11 @@ var myTime = 10
 //duh foooonts
 var myFont1;
 
+function preload(){
+
+}
+
+
 function setup()
     {
         createCanvas(1000,500)
@@ -49,7 +64,19 @@ function setup()
         pick3 = loadImage("images/unnamed.png");
         pick4 = loadImage("images/ortega.png");
         myFont1 = loadFont("Fonts/Galldr.ttf")
-        setInterval(changeTime, 1000);
+        setInterval(changeTime, 100);
+
+        for (var k = 0; k < 13; k++)
+        {
+            SantaWalkCycle[k] =  loadImage("images/Walk (" + (k+1) + ").png", 50, 300, 680, 472);;
+       
+        }
+
+
+        for (var i = 0; i < SantaWalkCycle.length; i++)
+        {
+
+        }
       
 
     }  
@@ -57,6 +84,18 @@ function setup()
 function draw()
     {
         background(0);
+
+        if (flipX) {
+          push();
+          scale(-1, 1);
+          image(SantaWalkCycle[i], -SantaX - SantaWalkCycle[i].width, SantaY);
+          pop();
+        } 
+        
+        else {
+          image(SantaWalkCycle[i], SantaX, SantaY);
+        }
+      
         
 
         /*plate OF DOOM!!!
@@ -116,27 +155,39 @@ function draw()
 
         function controlMrPea(){
             if (keyIsDown(83)) {
-               peaY += 10;
+               SantaY += 10;
                console.log("s is for going save MR. PEA");
-             } else if (keyIsDown(87)) {
-                peaY -= 10;
+             } 
+             
+             else if (keyIsDown(87)) {
+                SantaY -= 10;
                console.log("w is for way to go, going up, MR. PEA");
-             } else if (keyIsDown(65)) {
-                peaX -= 10;
+             } 
+             
+             else if (keyIsDown(65)) {
+               SantaX -= 10;
                console.log("a is for aMAZING WAY YOU'RE GOING LEFT, MR. PEA");
-             } else if (keyIsDown(68)) {
-                peaX += 10;
+               flipX = true;
+             }
+             
+             else if (keyIsDown(68)) {
+               SantaX += 10;
                console.log("d is for DARNTOOTIN! MR. PEA, YOU'RE GOING RIGHT!");
+                flipX = false;
+               }
              }
             
            }
 
  
-    }
 
     function changeTime()
 
 {
+    i++;
+    if (i > SantaWalkCycle.length - 1){
+      i = 0;
+    }
     myTime--;
     if(myTime < 0)
     {
