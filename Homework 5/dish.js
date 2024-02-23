@@ -12,13 +12,76 @@ var SantaWalkCycle = [];
 var i = 0
 var flipX = false;
 var SantaObject; 
+class mySanta {
+  constructor(myFileName, x, y, w, h) {
+    this.theImage = loadImage(myFileName);
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.flipX = false;
+  }
 
+  setFlipX(flipX) {
+    this.flipX = flipX;
+  }
 
+  setX(x) {
+    this.x = x;
+  }
+
+  draw() {
+    if (this.flipX) {
+      push();
+      scale(-1, 1);
+      image(this.theImage, -this.x - this.w, this.y);
+      pop();
+    } else {
+      image(this.theImage, this.x, this.y, this.w, this.h);
+    }
+  }
+}
 
 //Evil Fresh Fry 1
 var FF1X = 275
 var FF1Y = 200
 var pick2;
+
+
+//time to learn, TOMATO!! 
+class tomato{
+ 
+ constructor(myFileName, x, y, w, h)
+ {
+
+     this.characterImage = loadImage(myFileName);
+     this.x = x;
+     this.y = y; 
+     this.w = w;
+     this.h = h;
+ }
+ 
+ draw()
+ {
+
+     image(this.characterImage, this.x, this.y);
+ }
+
+ move()
+ {
+  this.x += foodSpeedX3;
+        if( this.x >= width-100 || this.x <= 0)
+          {foodSpeedX3 *=-1;}
+        this.y += foodSpeedY;
+        if( this.y >= height-100 || this.y <=0)
+          { foodSpeedY3 *=-1;}
+ }
+
+}
+
+var tomatox;
+var randomX;
+var randomY;
 
 /*eVIL FRESH FRY 2
 var FF2X = 210
@@ -40,16 +103,14 @@ var foodSpeedX
 var foodSpeedY 
 var foodSpeedX2
 var foodSpeedY2
+var foodSpeedX3
+var foodSpeedY3
 
 //Oyasumi O-YA-SU-MI I KNOW THAT IT'S HARD TO DOOOOOOOOO
 var myTime = 10
 
 //duh foooonts
 var myFont1;
-
-function preload(){
-
-}
 
 
 function setup()
@@ -59,6 +120,10 @@ function setup()
         foodSpeedY = random(5,10)
         foodSpeedX2 = random(1,15)
         foodSpeedY2 = random(4,20)
+        foodSpeedX3 = random(3,15)
+        foodspeedY3 = random(2,9)
+        randomX = random(10, 400)
+        randomY = random(10, 400)
         pick = loadImage("../images/mrpea.png");
         pick2 = loadImage("images/fries.png");
         pick3 = loadImage("images/unnamed.png");
@@ -68,7 +133,7 @@ function setup()
 
         for (var k = 0; k < 13; k++)
         {
-            SantaWalkCycle[k] =  loadImage("images/Walk (" + (k+1) + ").png", 50, 300, 680, 472);;
+            SantaWalkCycle[k] = new mySanta("images/Walk (" + (k+1) + ").png", SantaX, SantaY, 680, 472);;
        
         }
 
@@ -77,7 +142,9 @@ function setup()
         {
 
         }
-      
+        
+        tomatox = new tomato("images/tomato.png", randomX, randomY, 100, 100);
+
 
     }  
 
@@ -85,18 +152,10 @@ function draw()
     {
         background(0);
 
-        if (flipX) {
-          push();
-          scale(-1, 1);
-          image(SantaWalkCycle[i], -SantaX - SantaWalkCycle[i].width, SantaY);
-          pop();
-        } 
-        
-        else {
-          image(SantaWalkCycle[i], SantaX, SantaY);
-        }
+        SantaWalkCycle[i].draw();
       
-        
+        tomatox.draw();
+        tomatox.move();
 
         /*plate OF DOOM!!!
         fill(255)

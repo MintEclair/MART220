@@ -1,11 +1,11 @@
-class classes {
+class mySanta {
     constructor(myFileName, x, y, w, h) {
         this.theImage = loadImage(myFileName);
         this.x = x;
         this.y = y;
         this.w = w;
         this.h = h;
-        this.flipX = false; // Initialize flipX to false
+        this.flipX = false;
     }
 
     setFlipX(flipX) {
@@ -23,7 +23,7 @@ class classes {
             image(this.theImage, -this.x - this.w, this.y);
             pop();
         } else {
-            image(this.theImage, this.x, this.y);
+            image(this.theImage, this.x, this.y, this.w, this.h);
         }
     }
 }
