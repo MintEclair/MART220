@@ -33,10 +33,10 @@ class mySanta {
     checkCollision(x2, y2, w2, h2) {
 
       if (
-          this.x - this.w / 8 < x2 + w2 / 8 &&
-          this.x-this.w/2 + w2 / 2 > x2 - this.w / 2 &&
-          this.y-this.h/8 - h2 / 4 < y2 + this.h / 8 &&
-          this.y-this.h/2 + h2 / 2 > y2 - this.h / 2
+          this.x - this.w / 2 < x2 + w2 / 2 &&
+          this.x-this.w/4 + w2 / 2 > x2 - this.w / 4 &&
+          this.y-this.h/4 - h2 / 4 < y2 + this.h / 4 &&
+          this.y-this.h/4 + h2 / 2 > y2 - this.h / 4
   
       ) {
           return true;
