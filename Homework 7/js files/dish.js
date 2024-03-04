@@ -177,6 +177,7 @@ function draw(){
 
 
         if (keyIsPressed) {
+      console.log(key);
           if (key == "w") {
               SantaY -= 5;
           }
@@ -189,10 +190,12 @@ function draw(){
           }
           if (key == "d") {
               SantaX += 5;
+          
               flipX = false;
           }
   
           for (var ii = 0; ii < idleArray.length; ii++) {
+          
               idleArray[ii].setX(SantaX);
               idleArray[ii].updateFlip(flipX);
               walkArray[ii].setX(SantaX);
