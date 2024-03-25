@@ -36,15 +36,18 @@ class animationImage {
       // set the hit box
       this.currentAnimation.width = 300;
       this.currentAnimation.height = 150;
+      this.currentAnimation.rotation = 0;
+      this.currentAnimation.frameDelay= 5;
 
   }
 
 
   drawAnimation(animationType) {
       
-      this.currentAnimation.frameDelay = 20;
+      this.currentAnimation.frameDelay = 1000;
       this.currentAnimation.scale = .1;
       this.currentAnimation.changeAnimation(animationType);
+      this.currentAnimation.rotation = 0;
       if (animationType == 'walk' && this.direction == 'forward') {
           this.currentAnimation.direction = 0;
           this.currentAnimation.mirror.x = false;
@@ -93,6 +96,7 @@ class animationImage {
 
   isColliding(myImage) {
       return this.currentAnimation.collide(myImage);
+      
   }
 
 }
