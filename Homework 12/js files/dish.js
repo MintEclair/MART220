@@ -16,7 +16,7 @@ function draw() {
     background(0);
 
     push();
-    fill('#ED225D');
+    fill('#fc0307');
     textFont(ancientLanguage);
     textSize(36);
     text("The Culmination of Hell and Desire by Mint Pitassy", -575, -230);
